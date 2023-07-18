@@ -1,39 +1,58 @@
-Resources and code for paper "Fuzzy Logic based Logical Query Answering on Knowledge Graphs".
+# Fuzzy-DDI
 
+![ ](figure/1.png)
 
-## Environment
+**This is the data and code for our paper** `Fuzzy-DDI: A Interpretable Fuzzy Logic Query Model for Complex Drug-Drug Interaction Prediction`.
+
+## Prerequisites
+
 Make sure your local environment has the following installed:
 
-    Python3.9
-    torch == 1.9.0
-    wandb == 0.9.7
-    
+* `cuda version < 11.0`
+* `pytorch>=1.7.1 & <=1.9`
+* `wandb == 0.9.7`
 
-Install the dependency using:
+## Datastes
 
-    pip install -r requirements.txt
+We provide the dataset in the [data](data/) folder.
 
+| Data | Source | Description |
+| --- | --- | --- |
+| [Drugbank](data/drugbank/)| [This link](https://bitbucket.org/kaistsystemsbiology/deepddi/src/master/data/) | A drug-drug interaction network betweeen 1,709 drugs with 136,351 interactions. |
+| [TWOSIDES](data/TWOSIDES/) | [This link](http://snap.stanford.edu/biodata/datasets/10017/10017-ChChSe-Decagon.html) | A drug-drug interaction network betweeen 645 drugs with 46,221 interactions. |
+| [DrugCombDB](data/DrugCombDB) | [This link](http://drugcombdb.denglab.org/) | An integrated biomedical network contains more than 4 million drugs and other entities. We extract a subgraph dataset containing the relationship "*drug-dose-target-response*" from it.|
 
-## Download data
+## Documentation
 
-Download data from [here](http://snap.stanford.edu/betae/KG_data.zip) and put it under `data` folder.
-
-The directory structure should be like `[PROJECT_DIR]/data/NELL-betae/train-queries.pkl`.
-
-
-Only FB15k-237 and NELL995 are used in our study.
-
+```
+--src
+  │--README.md
+  │--constants.py
+  │--dataloader.py
+  │--fuzzyreasoning.py
+  │--gumbel.py
+  │--investigation helper.py
+  │--main.py
+  │--models.py
+  │--operations.py
+  │--regularizers.py
+  │--run.sh
+  │--test-pretrained-model.py
+  │--util.py
+  
+--data
+  │--Drugbank
+  |--TWOSIDES
+  |--DrugCombDB
+```
 
 ## Train
-Training script example: `./run.sh`
 
-It usually takes 4 days to a week to finish a run on a NVIDIA® GP102 TITAN Xp (12GB) GPU. 
+Training script example: `bash ./src/run.sh`
 
-
+On a single NVIDIA® GeForce RTX™ 4090 (24GB) GPU, a typical run takes 4 days to one week to complete. On two NVIDIA® Tesla® V100 (32GB) GPUs, a typical run takes 3 to 5 days to complete.
 
 *TODO: More training scripts for easy training will be added soon.*
-
-
 
 ## Test
 
@@ -41,19 +60,14 @@ The trained model will be automatically stored under the folder `./trained_model
 
 To test a trained model, you can use the following command:
 
-    python ./test-pretrained-model.py [DATA_NAME] [WANDB_RUN_NAME]
-
-By default, the test tests for product logic. You can also test for other logic systems ('godel' or 'luka') by modifying the `logic` variable in the script.
-
-
-### Test the pretrained model
-
-The pretrained FuzzQE model (product logic) for NELL can be downloaded [here](https://drive.google.com/file/d/15ByNcDayg5Vw67SaIk9ZPE3Gfa9tlTmo/view?usp=sharing). You can put it under `./trained_models` and use the following command to test it:
-
-    python ./test-pretrained-model.py NELL feasible-resonance-1518
-
+```
+python ./src/test-pretrained-model.py [DATA_NAME] [WANDB_RUN_NAME]
+```
 
 *TODO: More pretrained models will be uploaded soon.*
 
+## Authors
 
-
+**Junkai Cheng** @github.com/Cheng0829 \
+**Email:** chengjunkai829@gmail.com & Cheng0829@dlmu.edu.cn \
+**Site:** [GitHub](https://github.com/Cheng0829)
