@@ -57,17 +57,3 @@ The pretrained FuzzQE model (product logic) for NELL can be downloaded [here](ht
 
 
 
-## Reference
-Please refer to our paper if you find the resources useful. 
-
-Xuelu Chen, Ziniu Hu, Yizhou Sun. Fuzzy Logic based Logical Query Answering on Knowledge Graphs. *Proceedings of the Thirty-sixth AAAI Conference on Artificial Intelligence (AAAI), 2022.*
-
-
-
-    @inproceedings{chen2021fuzzyqa,
-        title={Fuzzy Logic based Logical Query Answering on Knowledge Graphs},
-        author={Chen, Xuelu and Hu, Ziniu and Sun, Yizhou}
-        booktitle={Proceedings of the Thirty-sixth AAAI Conference on Artificial Intelligence (AAAI)},
-        year={2022}
-    }
-
